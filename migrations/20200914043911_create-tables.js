@@ -1,5 +1,5 @@
 exports.up = function(knex) {
-    knex.schema.createTable("recipes", table=>{
+    return knex.schema.createTable("recipes", table=>{
         table.increments();
         table.string("recipe_name").notNullable();
         table.string("instructions").notNullable();
@@ -15,7 +15,7 @@ exports.up = function(knex) {
 };
 
 exports.down = function(knex) {
-  knex.dropTableIfExists("recipe_ingredients")
+  return knex.schema.dropTableIfExists("recipe_ingredients")
   .dropTableIfExists("ingredients")
   .dropTableIfExists("recipes");
 };
