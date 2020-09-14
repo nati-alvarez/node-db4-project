@@ -7,8 +7,8 @@ exports.up = function(knex) {
         table.increments();
         table.string("ingredient_name").notNullable().unique();
     }).createTable("recipe_ingredients", table=>{
-        table.integer("recipe_id").unsigned().notNullable().references("id").inTable("recipes");
-        table.integer("ingredient_id").unsigned().notNullable().references("id").inTable("ingredients");
+        table.integer("recipe_id").unsigned().notNullable().references("id").inTable("recipes").onUpdate("CASCADE").onDelete("CASCADE");
+        table.integer("ingredient_id").unsigned().notNullable().references("id").inTable("ingredients").onUpdate("CASCADE").onDelete("CASCADE");
         table.float("quantity").notNullable();
         table.unique(["recipe_id", "ingredient_id"]);
     });
