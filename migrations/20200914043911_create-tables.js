@@ -2,13 +2,13 @@ exports.up = function(knex) {
     return knex.schema.createTable("recipes", table=>{
         table.increments();
         table.string("recipe_name").notNullable();
-        table.string("instructions").notNullable();
     }).createTable("ingredients", table=>{
         table.increments();
         table.string("ingredient_name").notNullable().unique();
     }).createTable("instructions", table=>{
         table.increments();
         table.string("step", 128);
+        table.integer("step_number").unsigned().notNullable();
         table.integer("recipe_id").unsigned().notNullable().references("id").inTable("recipes").onUpdate("CASCADE").onDelete("CASCADE");
     }).createTable("recipe_ingredients", table=>{
         table.integer("recipe_id").unsigned().notNullable().references("id").inTable("recipes").onUpdate("CASCADE").onDelete("CASCADE");
