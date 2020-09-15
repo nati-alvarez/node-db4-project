@@ -3,12 +3,12 @@ const config = require("./knexfile").development;
 const db = knex(config);
 
 module.exports = {
-    getRecipies,
+    getRecipes,
     getShoppingList,
     getInstructions
 }
 
-function getRecipies(){
+function getRecipes(){
     return db("recipes");
 }
 
